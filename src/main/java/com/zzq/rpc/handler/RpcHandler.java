@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.cglib.reflect.FastClass;
 import org.springframework.cglib.reflect.FastMethod;
 
+import java.lang.reflect.Method;
 import java.util.Map;
 
 /**
@@ -30,8 +31,12 @@ public class RpcHandler extends SimpleChannelInboundHandler<RpcRequest> {
     protected void channelRead0(ChannelHandlerContext ctx, RpcRequest request) throws Exception {
         RpcResponse response = new RpcResponse();
         response.setRequestId(request.getRequestId());
+        log.debug("server receive request,id=" + request.getRequestId()
+                + ",className=" + request.getClassName()
+                + ",methodName=" + request.getMethodName());
         try {
             Object result = this.handle(request);
+            response.setResult(result);
         } catch (Throwable e) {
             log.error("", e);
             response.setError(e);

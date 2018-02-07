@@ -21,7 +21,7 @@ public class HelloServiceTest {
     @Test
     public void helloTest() {
         HelloService helloService = rpcProxy.create(HelloService.class);
-        String result = helloService.hello("zengzhiqi");
-        Assert.assertEquals("hello world! ", result);
+        String result = helloService.hello("world");
+        Assert.assertEquals("hello world", result);
     }
 }

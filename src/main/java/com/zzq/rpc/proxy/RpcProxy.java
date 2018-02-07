@@ -4,6 +4,8 @@ import com.zzq.rpc.client.RpcClient;
 import com.zzq.rpc.exchange.RpcRequest;
 import com.zzq.rpc.exchange.RpcResponse;
 import com.zzq.rpc.registry.ServiceDiscovery;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -14,6 +16,9 @@ import java.util.UUID;
  * Created by yhsyzzq on 2018-02-06.
  */
 public class RpcProxy {
+
+    private final static Logger log = LoggerFactory.getLogger(RpcProxy.class);
+
     private String serverAddress;
 
     private ServiceDiscovery serviceDiscovery;
